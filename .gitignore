@@ -52,3 +52,69 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+
+# .gitignore für .NET MAUI (C#)
+#
+# Dieses Template deckt Build-Artefakte, IDE-Caches (VS, Rider, VS Code)
+# und OS-spezifische Dateien ab.
+
+# # # Globale Muster # # #
+*.sln.DotSettings.user
+*.suo
+*.user
+
+# # # IDE-spezifisch # # #
+
+# Visual Studio
+.vs/
+
+# JetBrains Rider
+.idea/
+
+# Visual Studio Code
+.vscode/
+# Optional: Erlaube das Teilen von Launch- und Task-Konfigurationen
+# !.vscode/launch.json
+# !.vscode/tasks.json
+
+# # # Build-Ausgaben & Artefakte # # #
+[Bb]in/
+[Oo]bj/
+[Pp]ublish/
+[Rr]elease/
+
+# # # .NET & NuGet # # #
+packages/
+*.nupkg
+*.nuget.props
+*.nuget.targets
+project.lock.json
+
+# # # Test-Ergebnisse & Logs # # #
+TestResults/
+*.trx
+*.log
+*.dmp
+*.coverage
+*.coveragexml
+
+# # # MAUI-spezifisch (meist schon durch obj/bin abgedeckt) # # #
+# Generierte Plattform-Dateien, falls sie außerhalb von obj/ liegen
+*/[Aa]ndroid/obj/
+*/[Ii][Oo][Ss]/obj/
+*/[Mm]ac[Cc]atalyst/obj/
+*/[Ww]indows/obj/
+
+# # # OS-spezifische Dateien # # #
+
+# macOS (wichtig für dein MacBook)
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+desktop.ini
+ehthumbs.db
+ehthumbs_vista.db
