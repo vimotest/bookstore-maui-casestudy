@@ -40,3 +40,14 @@ This is the most important rule of the project.
 
 * **Async/Await:** Consistently use `async/await` for all I/O operations (e.g., loading from the repository). Commands should return a `Task` (e.g., `[RelayCommand] private async Task LoadBooksAsync()`).
 * **Readability:** Write clean, readable C# code.
+
+## 7. Project Scaffolding (Use dotnet CLI)
+
+* Use existing templates whenever possible (avoid manually crafting project files unless necessary).
+* Prefer using `dotnet new <template> -n <Name>` (or via your custom template pack) to scaffold new items.
+* Examples (assuming you have/install the right templates):
+    - dotnet new maui -n BookStore.App               (create new MAUI project)
+    - dotnet new maui-page -n BookListView           (create a new MAUI page item) *
+    - dotnet new maui-view -n BookListItemView       (create a new MAUI ContentView item) *
+    - dotnet new class -n BookDetailViewModel        (create a new class file)
+* Note: Commands marked * above depend on having the corresponding item templates installed/available. Use `dotnet new list` to check your available templates.
