@@ -1,49 +1,46 @@
-## DevelopmentPlan.md
+# Development Plan
 
-```markdown
-# Entwicklungsplan
+This plan breaks down the development into logical phases. The issues are prioritized accordingly (P1 - P3).
 
-Dieser Plan gliedert die Entwicklung in logische Phasen. Die Issues sind entsprechend priorisiert (P1 - P3).
+## Phase 1: Setup & Core Structure (P1)
 
-## Phase 1: Setup & Kernstruktur (P1)
+*Goal: A runnable skeleton application with navigation and data flow.*
 
-*Ziel: Ein lauffähiges Grundgerüst mit Navigation und Datenfluss.*
+1.  **Project Setup:** Creation of the solution and the four projects (`.App`, `.Core`, `.Infrastructure`, `.Tests`).
+2.  **DI Setup:** Configuration of `MauiProgram.cs` for Dependency Injection.
+3.  **Core Definition:** Definition of the domain models (`Book`, `Author`) and the `IBookRepository` interface.
+4.  **Mock Implementation:** Creation of the `MockBookRepository` and its registration in the DI container.
+5.  **Navigation:** Setup of `AppShell.xaml` (Master-Detail layout) with a flyout menu (e.g., link to "Book List").
+6.  **Tooling:** Integration of `CommunityToolkit.Mvvm`.
 
-1.  **Projekt-Setup:** Erstellung der Solution und der vier Projekte (`.App`, `.Core`, `.Infrastructure`, `.Tests`).
-2.  **DI-Setup:** Konfiguration des `MauiProgram.cs` für Dependency Injection.
-3.  **Core-Definition:** Definition der Domain-Modelle (`Book`, `Author`) und des `IBookRepository`-Interface.
-4.  **Mock-Implementierung:** Erstellung des `MockBookRepository` und Registrierung im DI-Container.
-5.  **Navigation:** Aufbau der `AppShell.xaml` (Master-Detail-Layout) mit einem Flyout-Menü (z.B. Link zur "Bücherliste").
-6.  **Tooling:** Integration von `CommunityToolkit.Mvvm`.
+## Phase 2: Feature Implementation (P1 - P2)
 
-## Phase 2: Feature-Implementierung (P1 - P2)
+*Goal: Implementation of core features (List and Detail view) according to the "Presentation-Ready" VM principle.*
 
-*Ziel: Implementierung der Kern-Features (Liste und Detailansicht) nach dem "Presentation-Ready" VM-Prinzip.*
+1.  **Book List (Master):**
+    * Create `BookListViewModel`.
+    * Implement `LoadBooksCommand` that uses `IBookRepository`.
+    * Create `BookListView` (XAML) with a `CollectionView` (table/list).
+    * *IMPORTANT:* The VM exposes a list of `BookListItemViewModel` (another Presentation-Ready VM), not `Book` objects.
+2.  **Book Details (Detail):**
+    * Create `BookDetailViewModel` (Presentation-Ready, with primitive properties).
+    * Implement navigation from list to detail (via `GoToAsync` and `IQueryAttributable`).
+    * Implement load and save logic (`SaveCommand`).
+    * Create `BookDetailView` (XAML) with a classic form (Labels, Entries, CheckBox).
 
-1.  **Bücherliste (Master):**
-    * Erstellung `BookListViewModel`.
-    * Implementierung `LoadBooksCommand`, das `IBookRepository` nutzt.
-    * Erstellung `BookListView` (XAML) mit einer `CollectionView` (Tabelle/Liste).
-    * *WICHTIG:* Das VM exponiert eine Liste von `BookListItemViewModel` (ein weiteres Presentation-Ready VM), nicht `Book`-Objekten.
-2.  **Bücherdetails (Detail):**
-    * Erstellung `BookDetailViewModel` (Presentation-Ready, mit primitiven Properties).
-    * Implementierung der Navigation von Liste zu Detail (via `GoToAsync` und `IQueryAttributable`).
-    * Implementierung von Lade- und Speicherlogik (`SaveCommand`).
-    * Erstellung `BookDetailView` (XAML) mit einem klassischen Formular (Labels, Entries, CheckBox).
+## Phase 3: Testing & Stabilization (P2 - P3)
 
-## Phase 3: Testen & Stabilisierung (P2 - P3)
+*Goal: Ensuring quality and achieving test coverage.*
 
-*Ziel: Sicherstellung der Qualität und Erreichung der Testabdeckung.*
-
-1.  **Unit-Tests (Liste):** Implementierung von xUnit-Tests für `BookListViewModel` (AAA-Pattern, Moq).
-2.  **Unit-Tests (Detail):** Implementierung von xUnit-Tests für `BookDetailViewModel`.
-3.  **Validierung:** Hinzufügen von einfacher Validierungslogik im `BookDetailViewModel`.
-4.  **Test-Coverage:** Analyse der Code Coverage und Hinzufügen fehlender Tests (Ziel: 80%).
+1.  **Unit Tests (List):** Implement xUnit tests for `BookListViewModel` (AAA Pattern, Moq).
+2.  **Unit Tests (Detail):** Implement xUnit tests for `BookDetailViewModel`.
+3.  **Validation:** Add simple validation logic in the `BookDetailViewModel`.
+4.  **Test Coverage:** Analyze code coverage and add missing tests (Goal: 80%).
 
 ## Phase 4: Polish & CI (P3)
 
-*Ziel: Fertigstellung der Case Study.*
+*Goal: Finalizing the case study.*
 
-1.  **Styling:** Einfaches Styling der Anwendung (Farben, Schriftgrößen) in `Styles.xaml`.
-2.  **CI/CD:** Setup einer einfachen GitHub Action, die das Projekt baut und die Tests bei jedem Push ausführt.
-3.  **Dokumentation:** Überprüfung und Finalisierung der `README.md`.
+1.  **Styling:** Simple styling of the application (colors, font sizes) in `Styles.xaml`.
+2.  **CI/CD:** Setup of a simple GitHub Action that builds the project and runs tests on every push.
+3.  **Documentation:** Review and finalize the `README.md`.

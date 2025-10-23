@@ -1,81 +1,75 @@
-# Architektur-Übersicht
+# Architecture Overview
 
-Dieses Dokument beschreibt die Software-Architektur der MAUI Bookstore Case Study.
+This document describes the software architecture of the MAUI Bookstore Case Study.
 
-## 1. Schichten (Layers)
+## 1. Layers
 
-Die Anwendung ist in drei Hauptprojekte unterteilt, um eine klare Trennung der Belange (Separation of Concerns) zu gewährleisten.
+The application is divided into three main projects to ensure a clear Separation of Concerns.
 
 ```mermaid
 graph TD
-    A["BookStore.App (MAUI)"] --> B["BookStore.Core"]
-    C["BookStore.Infrastructure"] --> B
-    D["BookStore.Tests"] --> A
+    subgraph Presentation["Presentation Layer"]
+        A[BookStore.App<br/>MAUI]
+    end
+
+    subgraph Domain["Domain Layer"]
+        B[BookStore.Core]
+    end
+
+    subgraph Infrastructure["Infrastructure Layer"]
+        C[BookStore.Infrastructure]
+    end
+
+    subgraph Tests["Test Layer"]
+        D[BookStore.Tests]
+    end
+
+    A --> B
+    C --> B
+    D --> A
     D --> B
     D --> C
-
-    subgraph "Präsentationsschicht"
-        A
-    end
-
-    subgraph "Domain-Schicht"
-        B
-    end
-
-    subgraph "Infrastruktur-Schicht"
-        C
-    end
-
-    subgraph "Test-Schicht"
-        D
-    end
 ```
 
-BookStore.Core: Enthält die "Business-Logik" und Definitionen.
+  * **`BookStore.Core`:** Contains the "business logic" and definitions.
+      * **Models:** Pure POCOs (Plain Old C\# Objects) like `Book` and `Author`. They contain no logic.
+      * **Repositories/Services:** Interfaces (e.g., `IBookRepository`) that define *what* the application can do (e.g., `GetBookByIdAsync`).
+  * **`BookStore.Infrastructure`:** Contains the *implementations* of the Core interfaces.
+      * **Data:** For this case study, we use a `MockBookRepository` that manages a static in-memory list of books. In a real-world scenario, this is where the EF Core `DbContext` or an API client would be.
+  * **`BookStore.App`:** The .NET MAUI project. It contains everything related to the UI.
+      * **Views:** XAML files (the "View").
+      * **ViewModels:** The "Presentation-Ready ViewModels".
+      * **`MauiProgram.cs`:** Configuration of DI, fonts, etc.
+  * **`BookStore.Tests`:** Unit tests, primarily for the ViewModels in `BookStore.App`.
 
-Models: Reine POCOs (Plain Old C# Objects) wie Book und Author. Sie enthalten keine Logik.
+## 2\. The MVVM Pattern (Presentation-Ready)
 
-Repositories/Services: Interfaces (z.B. IBookRepository), die definieren, was die Anwendung tun kann (z.B. GetBookByIdAsync).
+[cite\_start]We follow a strict MVVM approach based on the **Humble Object Pattern** (also known as "Presentation-Ready ViewModels" or "Testable ViewModels" in the style of ViMoTest)[cite: 18, 292, 317].
 
-BookStore.Infrastructure: Enthält die Implementierungen der Core-Interfaces.
+### The Problem (Standard MVVM)
 
-Data: Für diese Case Study verwenden wir eine MockBookRepository, die eine statische In-Memory-Liste von Büchern verwaltet. In einem Real-World-Szenario wäre hier der EF Core DbContext oder ein API-Client.
+A typical MVVM ViewModel often exposes the entire domain model:
 
-BookStore.App: Das .NET MAUI-Projekt. Es enthält alles, was mit der UI zu tun hat.
-
-Views: XAML-Dateien (die "View").
-
-ViewModels: Die "Presentation-Ready ViewModels".
-
-MauiProgram.cs: Konfiguration von DI, Fonts, etc.
-
-BookStore.Tests: Unit-Tests, primär für die ViewModels in BookStore.App.
-
-2. Das MVVM-Muster (Presentation-Ready)
-Wir verfolgen einen strikten MVVM-Ansatz, der auf dem Humble Object Pattern basiert (auch bekannt als "Presentation-Ready ViewModels" oder "Testable ViewModels" im Stil von ViMoTest).
-
-Das Problem (Standard-MVVM)
-
-Ein typisches MVVM-ViewModel exponiert oft das gesamte Domain-Modell:
-
-C#
-// Standard-Ansatz (NICHT verwenden)
+```csharp
+// Standard approach (DO NOT use)
 public class BookDetailViewModel : ObservableObject
 {
     [ObservableProperty]
-    private Book _currentBook; // <- Komplexes Domain-Modell
+    private Book _currentBook; [cite_start]// <- Complex domain model [cite: 332]
 }
-Nachteil: Die View (.xaml) muss komplexe Bindings verwenden ({Binding CurrentBook.Title}). Noch wichtiger: Um dieses ViewModel zu testen, muss der Test ein vollständiges Book-Objekt erstellen. Die UI-Logik (z.B. Formatierung) sickert oft in die View oder in Converter.
+```
 
-Unsere Lösung (Presentation-Ready VM)
+  * **Disadvantage:** The View (`.xaml`) must use complex bindings (`{Binding CurrentBook.Title}`). [cite\_start]More importantly, to test this ViewModel, the test must create a complete `Book` object[cite: 314]. [cite\_start]UI logic (like formatting) often leaks into the View or into converters[cite: 313].
 
-Das ViewModel ist ein Adapter zwischen dem (komplexen) Domain-Modell und der (dummen) View. Es wandelt Modelldaten in primitive Anzeigedaten um.
+### Our Solution (Presentation-Ready VM)
 
-C#
-// Unser Ansatz (Presentation-Ready)
+[cite\_start]The ViewModel acts as an **adapter** between the (complex) domain model and the (dumb) View[cite: 318]. [cite\_start]It converts model data into primitive display data[cite: 319].
+
+```csharp
+// Our approach (Presentation-Ready)
 public class BookDetailViewModel : ObservableObject
 {
-    // Primitive, direkt bindbare Eigenschaften
+    // Primitive, directly bindable properties
     [ObservableProperty]
     private string _title;
 
@@ -89,41 +83,43 @@ public class BookDetailViewModel : ObservableObject
     private bool _isAvailable;
 
     [ObservableProperty]
-    private string _availabilityText; // <- UI-Logik hier!
+    private string _availabilityText; [cite_start]// <- UI logic belongs here! [cite: 321]
 }
-Interaktionsfluss
+```
 
-Code-Snippet
+### Interaction Flow
+
+```mermaid
 sequenceDiagram
     participant V as View (XAML)
     participant VM as ViewModel
-    participant S as Service/Repo (z.B. IBookRepository)
+    participant S as Service/Repo (e.g. IBookRepository)
 
-    V->>VM: User klickt Button (Command)
-    VM->>S: Ruft Logik auf (z.B. LoadBookAsync(id))
-    S-->>VM: Gibt Domain-Modell zurück (Book-Objekt)
+    V->>VM: User clicks button (Command)
+    VM->>S: Calls logic (e.g. LoadBookAsync(id))
+    S-->>VM: Returns domain model (Book object)
 
-    Note right of VM: VM wandelt "Book" um!
+    Note right of VM: VM transforms "Book"!
     VM->>VM: _title = book.Title
     VM->>VM: _authorName = book.Author.Name
     VM->>VM: _isAvailable = book.Stock > 0
-    VM->>VM: _availabilityText = book.Stock > 0 ? "Auf Lager" : "Vergriffen"
+    VM->>VM: _availabilityText = book.Stock > 0 ? "In Stock" : "Out of Stock"
 
     VM-->>V: Update via INotifyPropertyChanged
-    V->>V: Zeigt neue primitive Daten an
-Vorteile dieses Ansatzes:
+    V->>V: Displays new primitive data
+```
 
-View ist "dumm": Die View bindet nur an Strings und Bools. Keine Converter, keine komplexe Logik im XAML.
+  * **Advantages of this approach:**
+    1.  [cite\_start]**View is "dumb":** The View only binds to strings and bools[cite: 319]. No converters, no complex logic in XAML.
+    2.  **ViewModel is "super testable":** A unit test only needs to mock the `IBookRepository`. [cite\_start]The test can then simply check `Assert.Equal("In Stock", viewModel.AvailabilityText)`[cite: 320]. We don't need to build UI elements or complex model hierarchies in the test.
 
-ViewModel ist "super testbar": Ein Unit-Test muss nur das IBookRepository mocken. Der Test kann dann einfach Assert.Equal("Auf Lager", viewModel.AvailabilityText) prüfen. Wir müssen keine UI-Elemente oder komplexen Modell-Hierarchien im Test aufbauen.
+## 3\. Navigation
 
-3. Navigation
-Wir verwenden die .NET MAUI Shell für die Hauptnavigation.
+We use the .NET MAUI Shell for main navigation.
 
-Ein FlyoutItem (Seitenleiste) dient als "Navigationsbaum" (z.B. "Bücher", "Autoren", "Einstellungen").
+  * A **FlyoutItem** (sidebar) serves as the "navigation tree" (e.g., "Books", "Authors", "Settings").
+  * The main area (`<ShellContent>`) hosts the master-detail views.
+  * Navigation between pages (e.g., from list to detail) is URI-based (`Shell.Current.GoToAsync("BookDetailPage?id=123")`).
+  * ViewModels that receive data implement `IQueryAttributable`.
 
-Der Hauptbereich (<ShellContent>) hostet die Master-Detail-Ansichten.
-
-Navigation zwischen Seiten (z.B. von Liste zu Detail) erfolgt URI-basiert (Shell.Current.GoToAsync("BookDetailPage?id=123")).
-
-ViewModels, die Daten empfangen, implementieren IQueryAttributable.
+<!-- end list -->

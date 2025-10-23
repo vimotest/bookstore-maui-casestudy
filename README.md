@@ -1,23 +1,49 @@
-# MAUI Bookstore: Eine Case Study
+# MAUI Bookstore: A Case Study
 
-Willkommen beim MAUI Bookstore! Dies ist ein Open-Source-Projekt, das als praxisnahe Fallstudie für die Entwicklung moderner .NET MAUI-Anwendungen dient. Der Fokus liegt auf einer sauberen, testbaren und wartbaren Architektur.
+Welcome to the MAUI Bookstore! This is an open-source project serving as a practical case study for developing modern .NET MAUI applications. The focus is on a clean, testable, and maintainable architecture.
 
-Das Projekt wird primär mithilfe von GitHub Copilot entwickelt, geleitet durch einen klaren Satz von Issues und Architektur-Richtlinien.
+The project is primarily developed using GitHub Copilot, guided by a clear set of issues and architectural guidelines.
 
-## Ziele
+## Goals
 
-* **Architektur:** Strikte Umsetzung des **MVVM-Musters**. Siehe `doc/architecture.md`
-* **Testbarkeit:** Hohe Testabdeckung (Ziel: 80%+) für ViewModels.
-* **ViewModel-Philosophie:** Einsatz von "Presentation-Ready ViewModels". Das bedeutet, die ViewModels folgen dem Humble-Object-Pattern: Sie exponieren primär primitive Typen (Strings, Bools, Enums) für das Data Binding, anstatt komplexe Domain-Modelle direkt an die View durchzureichen. Dies macht die View "dumm" und die ViewModels extrem testbar (ViMoTest-Ansatz).
-* **UI:** Eine klassische Master-Detail-Navigation (Seitenleiste/Hauptbereich) mit Listen- und Formular-Ansichten.
+* **Architecture:** Strict implementation of the **MVVM pattern**.
+* **Testability:** High test coverage (Target: 80%+) for ViewModels.
+* **ViewModel Philosophy:** Use of "Presentation-Ready ViewModels." This means the ViewModels follow the Humble Object pattern: they primarily expose primitive types (strings, bools, enums) for data binding, rather than passing complex domain models directly to the View. This makes the View "dumb" and the ViewModels extremely testable (ViMoTest approach).
+* **UI:** A classic master-detail navigation (sidebar/main area) with list and form views.
 
 ## Tech-Stack
 
 * .NET MAUI
 * C#
-* MVVM (mit `CommunityToolkit.Mvvm`)
+* MVVM (using `CommunityToolkit.Mvvm`)
 * .NET MAUI Dependency Injection
-* xUnit (für Tests)
-* Moq (für Mocking)
+* xUnit (for testing)
+* Moq (for mocking)
 
-## Projektstruktur
+## Project Structure
+```text
+.
+├── BookStore.App/               # The main MAUI app
+│   ├── Views/                   # XAML Views (dumb & thin)
+│   ├── ViewModels/              # ViewModels (Presentation-Ready)
+│   ├── Services/                # View-services (e.g., navigation)
+│   └── MauiProgram.cs           # DI configuration / service registration
+├── BookStore.Core/              # Domain layer
+│   ├── Models/                  # Domain models (e.g., Book, Author)
+│   └── Repositories/            # Repository interfaces (e.g., IBookRepository)
+├── BookStore.Infrastructure/    # Infrastructure layer
+│   └── Data/                    # Mock or real repository implementations
+└── BookStore.Tests/             # Test projects
+    └── ViewModelTests/          # Unit tests for ViewModels (xUnit + Moq)
+```
+
+## Getting Started
+
+1.  Clone the repository.
+2.  Open the `BookStore.sln` in Visual Studio or JetBrains Rider.
+3.  Ensure the .NET MAUI workloads are installed.
+4.  Select a target (e.g., Android Emulator, Windows Machine) and start the application.
+
+## Development
+
+Development follows the issues in this repository. Please adhere to the `ARCHITECTURE.md` and `COPILOT-INSTRUCTIONS.md` for detailed guidelines.
