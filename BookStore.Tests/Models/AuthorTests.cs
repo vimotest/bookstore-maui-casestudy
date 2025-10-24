@@ -40,4 +40,28 @@ public class AuthorTests
         Assert.Equal(newFirstName, author.FirstName);
         Assert.Equal(newLastName, author.LastName);
     }
+
+    [Fact]
+    public void Constructor_ShouldThrowArgumentNullException_WhenFirstNameIsNull()
+    {
+        // Arrange
+        var id = Guid.NewGuid();
+        string? firstName = null;
+        var lastName = "Doe";
+
+        // Act & Assert
+        Assert.Throws<ArgumentNullException>(() => new Author(id, firstName!, lastName));
+    }
+
+    [Fact]
+    public void Constructor_ShouldThrowArgumentNullException_WhenLastNameIsNull()
+    {
+        // Arrange
+        var id = Guid.NewGuid();
+        var firstName = "John";
+        string? lastName = null;
+
+        // Act & Assert
+        Assert.Throws<ArgumentNullException>(() => new Author(id, firstName, lastName!));
+    }
 }

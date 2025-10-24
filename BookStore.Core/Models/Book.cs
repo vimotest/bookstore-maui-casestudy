@@ -13,10 +13,10 @@ namespace BookStore.Core.Models
         public Book(Guid id, string title, string isbn, Guid authorId, int stock)
         {
             Id = id;
-            Title = title;
-            Isbn = isbn;
+            Title = title ?? throw new ArgumentNullException(nameof(title));
+            Isbn = isbn ?? throw new ArgumentNullException(nameof(isbn));
             AuthorId = authorId;
-            Stock = stock;
+            Stock = stock >= 0 ? stock : throw new ArgumentOutOfRangeException(nameof(stock), "Stock cannot be negative");
         }
     }
 }

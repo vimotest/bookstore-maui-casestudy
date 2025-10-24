@@ -50,4 +50,46 @@ public class BookTests
         Assert.Equal(newAuthorId, book.AuthorId);
         Assert.Equal(newStock, book.Stock);
     }
+
+    [Fact]
+    public void Constructor_ShouldThrowArgumentNullException_WhenTitleIsNull()
+    {
+        // Arrange
+        var id = Guid.NewGuid();
+        string? title = null;
+        var isbn = "978-0-7432-7356-5";
+        var authorId = Guid.NewGuid();
+        var stock = 10;
+
+        // Act & Assert
+        Assert.Throws<ArgumentNullException>(() => new Book(id, title!, isbn, authorId, stock));
+    }
+
+    [Fact]
+    public void Constructor_ShouldThrowArgumentNullException_WhenIsbnIsNull()
+    {
+        // Arrange
+        var id = Guid.NewGuid();
+        var title = "The Great Gatsby";
+        string? isbn = null;
+        var authorId = Guid.NewGuid();
+        var stock = 10;
+
+        // Act & Assert
+        Assert.Throws<ArgumentNullException>(() => new Book(id, title, isbn!, authorId, stock));
+    }
+
+    [Fact]
+    public void Constructor_ShouldThrowArgumentOutOfRangeException_WhenStockIsNegative()
+    {
+        // Arrange
+        var id = Guid.NewGuid();
+        var title = "The Great Gatsby";
+        var isbn = "978-0-7432-7356-5";
+        var authorId = Guid.NewGuid();
+        var stock = -1;
+
+        // Act & Assert
+        Assert.Throws<ArgumentOutOfRangeException>(() => new Book(id, title, isbn, authorId, stock));
+    }
 }
