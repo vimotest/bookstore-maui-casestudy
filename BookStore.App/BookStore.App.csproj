@@ -1,9 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<!-- Use MAUI target frameworks when workload is available, otherwise fall back to net9.0 -->
-		<TargetFrameworks Condition="'$(DotNetBuildFromSource)' != 'true'">net9.0-android;net9.0-ios;net9.0-maccatalyst</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows')) and '$(DotNetBuildFromSource)' != 'true'">$(TargetFrameworks);net9.0-windows10.0.19041.0</TargetFrameworks>
+		<!--
+			Decide which TFM to build based on the OS.
+			- On Windows, build for Windows and Android.
+			- On macOS, build for Mac Catalyst only.
+			- On Linux, build for Android.
+			This prevents issues where building on one OS requires workloads for another.
+		-->
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows')) and '$(DotNetBuildFromSource)' != 'true'">net9.0-windows10.0.19041.0;net9.0-android</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('osx')) and '$(DotNetBuildFromSource)' != 'true'">net9.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('linux')) and '$(DotNetBuildFromSource)' != 'true'">net9.0-android</TargetFrameworks>
 		<!-- Fallback for build environments without MAUI workload -->
 		<TargetFramework Condition="'$(DotNetBuildFromSource)' == 'true'">net9.0</TargetFramework>
 		
