@@ -121,7 +121,7 @@ public class BookRepositoryMockTests
     }
 
     [Fact]
-    public async Task UpdateBookAsync_WithNonExistingBook_ShouldReturnBookWithoutError()
+    public async Task UpdateBookAsync_WithNonExistingBook_ShouldThrowInvalidOperationException()
     {
         // Arrange
         BookRepositoryMock.ResetToInitialState();
@@ -135,12 +135,8 @@ public class BookRepositoryMockTests
             5
         );
 
-        // Act
-        var result = await repository.UpdateBookAsync(nonExistingBook);
-
-        // Assert
-        Assert.NotNull(result);
-        Assert.Equal(nonExistingBook.Id, result.Id);
+        // Act & Assert
+        await Assert.ThrowsAsync<InvalidOperationException>(() => repository.UpdateBookAsync(nonExistingBook));
     }
 
     [Fact]

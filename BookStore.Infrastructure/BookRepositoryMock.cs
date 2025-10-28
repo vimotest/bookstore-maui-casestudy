@@ -84,13 +84,15 @@ namespace BookStore.Infrastructure
             }
 
             var existingBook = _books.FirstOrDefault(b => b.Id == book.Id);
-            if (existingBook != null)
+            if (existingBook == null)
             {
-                existingBook.Title = book.Title;
-                existingBook.Isbn = book.Isbn;
-                existingBook.AuthorId = book.AuthorId;
-                existingBook.Stock = book.Stock;
+                throw new InvalidOperationException($"Book with ID {book.Id} does not exist in the repository.");
             }
+
+            existingBook.Title = book.Title;
+            existingBook.Isbn = book.Isbn;
+            existingBook.AuthorId = book.AuthorId;
+            existingBook.Stock = book.Stock;
 
             return Task.FromResult(book);
         }
