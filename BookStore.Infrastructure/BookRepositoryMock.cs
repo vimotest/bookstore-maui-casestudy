@@ -94,7 +94,7 @@ namespace BookStore.Infrastructure
             existingBook.AuthorId = book.AuthorId;
             existingBook.Stock = book.Stock;
 
-            return Task.FromResult(book);
+            return Task.FromResult(existingBook);
         }
 
         /// <inheritdoc />
