@@ -11,10 +11,85 @@
         <child id="777152910168882908" name="contents" index="103ZUC" />
       </concept>
       <concept id="777152910168882295" name="de.vimotest.types.structure.EmptyStructContent" flags="ng" index="103ZK3" />
+      <concept id="7922086861527425651" name="de.vimotest.types.structure.StringValue" flags="ng" index="1wOkDO">
+        <property id="7922086861527426429" name="value" index="1wOkPU" />
+      </concept>
     </language>
     <language id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core">
       <concept id="1169194658468" name="jetbrains.mps.lang.core.structure.INamedConcept" flags="ngI" index="TrEIO">
         <property id="1169194664001" name="name" index="TrG5h" />
+      </concept>
+    </language>
+    <language id="716e8717-88c0-4280-8c16-b4d88567596f" name="de.vimotest.viewmodel.testing">
+      <concept id="8948051009467167877" name="de.vimotest.viewmodel.testing.structure.ViewCommandInvocationAction" flags="ng" index="27s6xY">
+        <reference id="8948051009467187564" name="targetCommand" index="27sXQn" />
+      </concept>
+      <concept id="5447508759369797102" name="de.vimotest.viewmodel.testing.structure.WidgetTableRowsCheckValue" flags="ng" index="2ayrQO">
+        <child id="5447508759369822399" name="rows" index="2ay43_" />
+        <child id="7922086861434398932" name="columnCheckInfos" index="1EpG3j" />
+      </concept>
+      <concept id="3922717397912187313" name="de.vimotest.viewmodel.testing.structure.ImageSourceCheckValue" flags="ng" index="2mJbG1">
+        <child id="173640931447457367" name="expectedImage" index="3n32fm" />
+      </concept>
+      <concept id="3922717397912187253" name="de.vimotest.viewmodel.testing.structure.ImageCheck" flags="ng" index="2mJbJ5">
+        <child id="3922717397912187254" name="checks" index="2mJbJ6" />
+      </concept>
+      <concept id="5213916851000129542" name="de.vimotest.viewmodel.testing.structure.CheckBoxCheck" flags="ng" index="C4Fn6">
+        <child id="5213916851000129543" name="checks" index="C4Fn7" />
+      </concept>
+      <concept id="7445061853131767032" name="de.vimotest.viewmodel.testing.structure.ThenDescriptionWithAssert" flags="ng" index="DUd2R">
+        <child id="7445061853131768388" name="assert" index="DUiSb" />
+      </concept>
+      <concept id="7445061853131767061" name="de.vimotest.viewmodel.testing.structure.WhenDescriptionWithAction" flags="ng" index="DUd5q">
+        <child id="7445061853131768390" name="action" index="DUiS9" />
+      </concept>
+      <concept id="8882441622785832606" name="de.vimotest.viewmodel.testing.structure.LabelCheck" flags="ng" index="V3Zc6">
+        <child id="8882441622785832607" name="checks" index="V3Zc7" />
+      </concept>
+      <concept id="8882441622785832647" name="de.vimotest.viewmodel.testing.structure.TextCheckValue" flags="ng" index="V3Zdv">
+        <child id="5219625661136595408" name="expectedText" index="oSbKM" />
+      </concept>
+      <concept id="3426401106044983339" name="de.vimotest.viewmodel.testing.structure.ViewModelFeatureTestSuite" flags="ng" index="30n1Qd">
+        <reference id="3426401106044983489" name="targetViewModel" index="30n1PB" />
+        <child id="3426401106044983341" name="tests" index="30n1Qb" />
+      </concept>
+      <concept id="3426401106045121475" name="de.vimotest.viewmodel.testing.structure.ViewWidgetAssertion" flags="ng" index="30nzp_">
+        <reference id="3426401106045121502" name="widget" index="30nzpS" />
+        <child id="3426401106045146960" name="check" index="30nDbQ" />
+      </concept>
+      <concept id="4192570430936882686" name="de.vimotest.viewmodel.testing.structure.CheckedCheckValue" flags="ng" index="35STPD">
+        <property id="4192570430936928123" name="expectedIsChecked" index="35S$ZG" />
+      </concept>
+      <concept id="7199841511154467673" name="de.vimotest.viewmodel.testing.structure.ComposedWhenThenParts" flags="ng" index="1s$VFG">
+        <child id="7199841511154487303" name="actionsWithDescription" index="1s$QAM" />
+        <child id="7199841511154487304" name="assertsWithDescription" index="1s$QAX" />
+      </concept>
+      <concept id="7922086861527424090" name="de.vimotest.viewmodel.testing.structure.DataTableContext" flags="ng" index="1wOnht">
+        <child id="7922086861527425650" name="rows" index="1wOkDP" />
+        <child id="7922086861527425648" name="headersRow" index="1wOkDR" />
+      </concept>
+      <concept id="7922086861527424868" name="de.vimotest.viewmodel.testing.structure.DataTableRow" flags="ng" index="1wOntz">
+        <child id="7922086861527425646" name="values" index="1wOkDD" />
+      </concept>
+      <concept id="7922086861434398150" name="de.vimotest.viewmodel.testing.structure.ColumnCheckInfo" flags="ng" index="1EpGR1">
+        <reference id="7922086861434398929" name="columnDefinition" index="1EpG3m" />
+      </concept>
+      <concept id="4309178210352018146" name="de.vimotest.viewmodel.testing.structure.GivenDescriptionWithContext" flags="ng" index="1IbZgy">
+        <child id="7445061853131768373" name="context" index="DUiTU" />
+      </concept>
+      <concept id="7205622933660482722" name="de.vimotest.viewmodel.testing.structure.ViewModelTestScenario" flags="ng" index="3LKzX3">
+        <child id="7445061853131767039" name="contextWithDescription" index="DUd2K" />
+        <child id="7199841511154487307" name="whenThenDescriptions" index="1s$QAY" />
+      </concept>
+      <concept id="1116055435858972130" name="de.vimotest.viewmodel.testing.structure.WidgetCellCheck" flags="ng" index="1NuoHz">
+        <reference id="216141720049061515" name="cachedWidgetToCheck" index="3elmOO" />
+        <child id="1116055435858972131" name="nestedCheck" index="1NuoHy" />
+      </concept>
+      <concept id="2392128244454465900" name="de.vimotest.viewmodel.testing.structure.TableCheckRow" flags="ng" index="3UOqEq">
+        <child id="5447508759369142120" name="cellChecks" index="2aBVWM" />
+      </concept>
+      <concept id="2392128244454154708" name="de.vimotest.viewmodel.testing.structure.TableViewCheck" flags="ng" index="3UVeCy">
+        <child id="2392128244454154709" name="checks" index="3UVeCz" />
       </concept>
     </language>
     <language id="ce7915b5-36b4-4478-a67c-f5a8a72ed4a0" name="de.vimotest.viewmodel">
@@ -25,7 +100,7 @@
         <child id="3922717397912187190" name="visibilityFeature" index="2mJbI6" />
       </concept>
       <concept id="3922717397912187178" name="de.vimotest.viewmodel.structure.ImageSourceFeature" flags="ng" index="2mJbIq">
-        <child id="173640931447457367" name="defaultImage" index="3n32fm" />
+        <child id="173640931447457367" name="defaultImage" index="3n32fn" />
       </concept>
       <concept id="5219625661134590255" name="de.vimotest.viewmodel.structure.SingleOrMultiLineString" flags="ng" index="o7Kjd">
         <property id="5219625661134591033" name="singleLineValue" index="o7K7r" />
@@ -71,7 +146,17 @@
       </concept>
       <concept id="777152910168882963" name="de.vimotest.viewmodel.structure.ViewModelData" flags="ng" index="103ZXB" />
       <concept id="5775867078593476371" name="de.vimotest.viewmodel.structure.TextColorFeature" flags="ng" index="31hZui" />
-      <concept id="2820520252859978186" name="de.vimotest.viewmodel.structure.ImageDefinitionRef" flags="ng" index="3eDL7N" />
+      <concept id="2820520252859978186" name="de.vimotest.viewmodel.structure.ImageDefinitionRef" flags="ng" index="3eDL7N">
+        <reference id="2820520252859978187" name="image" index="3eDL7M" />
+      </concept>
+      <concept id="7497173622928201774" name="de.vimotest.viewmodel.structure.ImageDefinitionRegistry" flags="ng" index="1u6Luu">
+        <child id="7497173622928201831" name="images" index="1u6Lvn" />
+      </concept>
+      <concept id="7497173622928201775" name="de.vimotest.viewmodel.structure.ImageDefinition" flags="ng" index="1u6Luv">
+        <property id="3922717397912196834" name="sourcePath" index="2mJlLi" />
+        <property id="3016673643442476650" name="width" index="Lsnro" />
+        <property id="3016673643442476939" name="height" index="LsnsT" />
+      </concept>
       <concept id="2148949417128514166" name="de.vimotest.viewmodel.structure.IRowBasedFeature" flags="ngI" index="3_UcxH">
         <child id="4610291257172520368" name="rowHandleFeature" index="3D86r8" />
         <child id="4610291257172520369" name="updatingRowsFlagFeature" index="3D86r9" />
@@ -146,27 +231,6 @@
             </node>
           </node>
         </node>
-        <node concept="E2vJn" id="6VfcGNTv8Aa" role="E2v$k">
-          <node concept="V3Zf6" id="6VfcGNTv8Ab" role="E2vJm">
-            <node concept="o7Kjd" id="6VfcGNTv8Ac" role="o6p68">
-              <property role="o7K7r" value="ID" />
-            </node>
-          </node>
-          <node concept="C4FCg" id="6VfcGNTv8Ad" role="Ekmcp" />
-          <node concept="C4FCh" id="6VfcGNTv8Ae" role="E2vJh" />
-          <node concept="V3ZfZ" id="6N2ZkRtozxg" role="Ek7rZ">
-            <property role="TrG5h" value="ID" />
-            <node concept="V3Zf6" id="6N2ZkRtozxm" role="V3ZfK">
-              <node concept="o7Kjd" id="6N2ZkRtozxs" role="o6p68" />
-            </node>
-            <node concept="C4FCh" id="6N2ZkRtozxy" role="V3ZfL" />
-            <node concept="C4FCg" id="6N2ZkRtozxC" role="V3ZfM" />
-            <node concept="1G_fEc" id="6N2ZkRtozxI" role="1G_fIJ">
-              <node concept="o7Kjd" id="6N2ZkRtozxO" role="1AQzBo" />
-            </node>
-            <node concept="31hZui" id="6N2ZkRtozxU" role="31m0es" />
-          </node>
-        </node>
         <node concept="3KuuIt" id="6VfcGNTv8Aw" role="3UVeDY">
           <node concept="3D8xT1" id="6VfcGNTv8Ax" role="3D86r8">
             <property role="34jNyx" value="1RiAxJSewmn/StringRowHandle" />
@@ -185,7 +249,7 @@
           <node concept="2mJbI3" id="6N2ZkRtozx6" role="Ek7rZ">
             <property role="TrG5h" value="Preview" />
             <node concept="2mJbIq" id="6N2ZkRtozx8" role="2mJbI4">
-              <node concept="3eDL7N" id="6N2ZkRtozxa" role="3n32fm" />
+              <node concept="3eDL7N" id="6N2ZkRtozxa" role="3n32fn" />
             </node>
             <node concept="C4FCh" id="6N2ZkRtozxc" role="2mJbI5" />
             <node concept="C4FCg" id="6N2ZkRtozxe" role="2mJbI6" />
@@ -316,6 +380,265 @@
       </node>
     </node>
     <node concept="103ZXB" id="6VfcGNTv8A2" role="103ZXF" />
+  </node>
+  <node concept="30n1Qd" id="6u29yJa$i6a">
+    <property role="TrG5h" value="BookListViewModelTests" />
+    <ref role="30n1PB" node="6VfcGNTv8_R" resolve="BookListViewModel" />
+    <node concept="3LKzX3" id="6u29yJa$i6b" role="30n1Qb">
+      <property role="TrG5h" value="Load two books" />
+      <node concept="1IbZgy" id="6u29yJa$i6c" role="DUd2K">
+        <node concept="1wOnht" id="6u29yJa$i6j" role="DUiTU">
+          <node concept="1wOntz" id="6u29yJa$i6l" role="1wOkDR">
+            <node concept="1wOkDO" id="6u29yJa$i7q" role="1wOkDD">
+              <property role="1wOkPU" value="isbn" />
+            </node>
+            <node concept="1wOkDO" id="6u29yJa$i6t" role="1wOkDD">
+              <property role="1wOkPU" value="name" />
+            </node>
+            <node concept="1wOkDO" id="6u29yJa$i7o" role="1wOkDD">
+              <property role="1wOkPU" value="author" />
+            </node>
+            <node concept="1wOkDO" id="6u29yJa$i6v" role="1wOkDD">
+              <property role="1wOkPU" value="price" />
+            </node>
+            <node concept="1wOkDO" id="6u29yJa$i6x" role="1wOkDD">
+              <property role="1wOkPU" value="stock" />
+            </node>
+          </node>
+          <node concept="1wOntz" id="6u29yJa$i6p" role="1wOkDP">
+            <node concept="1wOkDO" id="6u29yJa$i6u" role="1wOkDD">
+              <property role="1wOkPU" value="345-123" />
+            </node>
+            <node concept="1wOkDO" id="6u29yJa$i7p" role="1wOkDD">
+              <property role="1wOkPU" value="Book1" />
+            </node>
+            <node concept="1wOkDO" id="6u29yJa$i7r" role="1wOkDD">
+              <property role="1wOkPU" value="Max Mustermann" />
+            </node>
+            <node concept="1wOkDO" id="6u29yJa$i6w" role="1wOkDD">
+              <property role="1wOkPU" value="5" />
+            </node>
+            <node concept="1wOkDO" id="6u29yJa$i6y" role="1wOkDD">
+              <property role="1wOkPU" value="10" />
+            </node>
+          </node>
+          <node concept="1wOntz" id="6u29yJa$ibC" role="1wOkDP">
+            <node concept="1wOkDO" id="6u29yJa$ibE" role="1wOkDD">
+              <property role="1wOkPU" value="555-678" />
+            </node>
+            <node concept="1wOkDO" id="6u29yJa$ibF" role="1wOkDD">
+              <property role="1wOkPU" value="Book2" />
+            </node>
+            <node concept="1wOkDO" id="6u29yJa$ibG" role="1wOkDD">
+              <property role="1wOkPU" value="Alice Wonderland" />
+            </node>
+            <node concept="1wOkDO" id="6u29yJa$ibH" role="1wOkDD">
+              <property role="1wOkPU" value="7" />
+            </node>
+            <node concept="1wOkDO" id="6u29yJa$ibI" role="1wOkDD">
+              <property role="1wOkPU" value="4" />
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="1s$VFG" id="6u29yJa$i6e" role="1s$QAY">
+        <node concept="DUd5q" id="6u29yJa$i6f" role="1s$QAM">
+          <node concept="27s6xY" id="6u29yJa$i6z" role="DUiS9">
+            <ref role="27sXQn" node="6VfcGNTv8_T" resolve="LoadView" />
+          </node>
+        </node>
+        <node concept="DUd2R" id="6u29yJa$i6h" role="1s$QAX">
+          <node concept="30nzp_" id="6u29yJa$i6_" role="DUiSb">
+            <ref role="30nzpS" node="6VfcGNTv8A9" resolve="BookList" />
+            <node concept="3UVeCy" id="6u29yJa$i6A" role="30nDbQ">
+              <node concept="2ayrQO" id="6u29yJa$i6B" role="3UVeCz">
+                <node concept="1EpGR1" id="6u29yJa$i6C" role="1EpG3j">
+                  <ref role="1EpG3m" node="6N2ZkRtozw0" resolve="Selected" />
+                </node>
+                <node concept="1EpGR1" id="6u29yJa$i6E" role="1EpG3j">
+                  <ref role="1EpG3m" node="6N2ZkRtozwj" resolve="Preview" />
+                </node>
+                <node concept="1EpGR1" id="6u29yJa$i6F" role="1EpG3j">
+                  <ref role="1EpG3m" node="6VfcGNTv8AA" resolve="Title" />
+                </node>
+                <node concept="1EpGR1" id="6u29yJa$i6G" role="1EpG3j">
+                  <ref role="1EpG3m" node="6VfcGNTv8AW" resolve="Author" />
+                </node>
+                <node concept="1EpGR1" id="6u29yJa$i6H" role="1EpG3j">
+                  <ref role="1EpG3m" node="6VfcGNTv8B9" resolve="ISBN" />
+                </node>
+                <node concept="1EpGR1" id="6u29yJa$i6I" role="1EpG3j">
+                  <ref role="1EpG3m" node="6VfcGNTv8Bm" resolve="Price" />
+                </node>
+                <node concept="1EpGR1" id="6u29yJa$i6J" role="1EpG3j">
+                  <ref role="1EpG3m" node="6VfcGNTv8Bz" resolve="Stock" />
+                </node>
+                <node concept="3UOqEq" id="6u29yJa$iab" role="2ay43_">
+                  <node concept="1NuoHz" id="6u29yJa$iac" role="2aBVWM">
+                    <ref role="3elmOO" node="6N2ZkRtozw6" resolve="Selected" />
+                    <node concept="C4Fn6" id="6u29yJa$iad" role="1NuoHy">
+                      <node concept="35STPD" id="6u29yJa$iae" role="C4Fn7">
+                        <property role="35S$ZG" value="1EVo$X00Gbu/FALSE" />
+                      </node>
+                    </node>
+                  </node>
+                  <node concept="1NuoHz" id="6u29yJa$iaj" role="2aBVWM">
+                    <ref role="3elmOO" node="6N2ZkRtozx6" resolve="Preview" />
+                    <node concept="2mJbJ5" id="6u29yJa$iak" role="1NuoHy">
+                      <node concept="2mJbG1" id="6u29yJa$ial" role="2mJbJ6">
+                        <node concept="3eDL7N" id="6u29yJa$iam" role="3n32fm">
+                          <ref role="3eDL7M" node="6u29yJa$i7u" resolve="Book1.png" />
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                  <node concept="1NuoHz" id="6u29yJa$ian" role="2aBVWM">
+                    <ref role="3elmOO" node="6VfcGNTv8AG" resolve="Title" />
+                    <node concept="V3Zc6" id="6u29yJa$iao" role="1NuoHy">
+                      <node concept="V3Zdv" id="6u29yJa$iap" role="V3Zc7">
+                        <node concept="o7Kjd" id="6u29yJa$iaq" role="oSbKM">
+                          <property role="o7K7r" value="Book1" />
+                        </node>
+                      </node>
+                      <node concept="V3Zdv" id="6u29yJa$iar" role="V3Zc7">
+                        <node concept="o7Kjd" id="6u29yJa$ias" role="oSbKM">
+                          <property role="o7K7r" value="Book1" />
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                  <node concept="1NuoHz" id="6u29yJa$iat" role="2aBVWM">
+                    <ref role="3elmOO" node="6VfcGNTv8B1" resolve="Author" />
+                    <node concept="V3Zc6" id="6u29yJa$iau" role="1NuoHy">
+                      <node concept="V3Zdv" id="6u29yJa$iav" role="V3Zc7">
+                        <node concept="o7Kjd" id="6u29yJa$iaw" role="oSbKM">
+                          <property role="o7K7r" value="Max Mustermann" />
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                  <node concept="1NuoHz" id="6u29yJa$iax" role="2aBVWM">
+                    <ref role="3elmOO" node="6VfcGNTv8Be" resolve="ISBN" />
+                    <node concept="V3Zc6" id="6u29yJa$iay" role="1NuoHy">
+                      <node concept="V3Zdv" id="6u29yJa$iaz" role="V3Zc7">
+                        <node concept="o7Kjd" id="6u29yJa$ia$" role="oSbKM">
+                          <property role="o7K7r" value="12345678" />
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                  <node concept="1NuoHz" id="6u29yJa$ia_" role="2aBVWM">
+                    <ref role="3elmOO" node="6VfcGNTv8Br" resolve="Price" />
+                    <node concept="V3Zc6" id="6u29yJa$iaA" role="1NuoHy">
+                      <node concept="V3Zdv" id="6u29yJa$iaB" role="V3Zc7">
+                        <node concept="o7Kjd" id="6u29yJa$iaC" role="oSbKM">
+                          <property role="o7K7r" value="5.00 €" />
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                  <node concept="1NuoHz" id="6u29yJa$iaD" role="2aBVWM">
+                    <ref role="3elmOO" node="6VfcGNTv8BC" resolve="Stock" />
+                    <node concept="V3Zc6" id="6u29yJa$iaE" role="1NuoHy">
+                      <node concept="V3Zdv" id="6u29yJa$iaF" role="V3Zc7">
+                        <node concept="o7Kjd" id="6u29yJa$iaG" role="oSbKM">
+                          <property role="o7K7r" value="x10" />
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                </node>
+                <node concept="3UOqEq" id="6u29yJa$iaH" role="2ay43_">
+                  <node concept="1NuoHz" id="6u29yJa$iaK" role="2aBVWM">
+                    <ref role="3elmOO" node="6N2ZkRtozw6" resolve="Selected" />
+                    <node concept="C4Fn6" id="6u29yJa$iaI" role="1NuoHy">
+                      <node concept="35STPD" id="6u29yJa$iaJ" role="C4Fn7">
+                        <property role="35S$ZG" value="1EVo$X00Gbu/FALSE" />
+                      </node>
+                    </node>
+                  </node>
+                  <node concept="1NuoHz" id="6u29yJa$iaU" role="2aBVWM">
+                    <ref role="3elmOO" node="6N2ZkRtozx6" resolve="Preview" />
+                    <node concept="2mJbJ5" id="6u29yJa$iaR" role="1NuoHy">
+                      <node concept="2mJbG1" id="6u29yJa$iaS" role="2mJbJ6">
+                        <node concept="3eDL7N" id="6u29yJa$iaT" role="3n32fm">
+                          <ref role="3eDL7M" node="6u29yJa$i7v" resolve="Book2.png" />
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                  <node concept="1NuoHz" id="6u29yJa$iaZ" role="2aBVWM">
+                    <ref role="3elmOO" node="6VfcGNTv8AG" resolve="Title" />
+                    <node concept="V3Zc6" id="6u29yJa$iaW" role="1NuoHy">
+                      <node concept="V3Zdv" id="6u29yJa$iaX" role="V3Zc7">
+                        <node concept="o7Kjd" id="6u29yJa$iaY" role="oSbKM">
+                          <property role="o7K7r" value="Book2" />
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                  <node concept="1NuoHz" id="6u29yJa$ib4" role="2aBVWM">
+                    <ref role="3elmOO" node="6VfcGNTv8B1" resolve="Author" />
+                    <node concept="V3Zc6" id="6u29yJa$ib1" role="1NuoHy">
+                      <node concept="V3Zdv" id="6u29yJa$ib2" role="V3Zc7">
+                        <node concept="o7Kjd" id="6u29yJa$ib3" role="oSbKM">
+                          <property role="o7K7r" value="Alice Wonderland" />
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                  <node concept="1NuoHz" id="6u29yJa$ib9" role="2aBVWM">
+                    <ref role="3elmOO" node="6VfcGNTv8Be" resolve="ISBN" />
+                    <node concept="V3Zc6" id="6u29yJa$ib6" role="1NuoHy">
+                      <node concept="V3Zdv" id="6u29yJa$ib7" role="V3Zc7">
+                        <node concept="o7Kjd" id="6u29yJa$ib8" role="oSbKM">
+                          <property role="o7K7r" value="555-678" />
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                  <node concept="1NuoHz" id="6u29yJa$ibe" role="2aBVWM">
+                    <ref role="3elmOO" node="6VfcGNTv8Br" resolve="Price" />
+                    <node concept="V3Zc6" id="6u29yJa$ibb" role="1NuoHy">
+                      <node concept="V3Zdv" id="6u29yJa$ibc" role="V3Zc7">
+                        <node concept="o7Kjd" id="6u29yJa$ibd" role="oSbKM">
+                          <property role="o7K7r" value="7.00 €" />
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                  <node concept="1NuoHz" id="6u29yJa$ibj" role="2aBVWM">
+                    <ref role="3elmOO" node="6VfcGNTv8BC" resolve="Stock" />
+                    <node concept="V3Zc6" id="6u29yJa$ibg" role="1NuoHy">
+                      <node concept="V3Zdv" id="6u29yJa$ibh" role="V3Zc7">
+                        <node concept="o7Kjd" id="6u29yJa$ibi" role="oSbKM">
+                          <property role="o7K7r" value="x4" />
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+  </node>
+  <node concept="1u6Luu" id="6u29yJa$i7t">
+    <property role="TrG5h" value="BookImages" />
+    <node concept="1u6Luv" id="6u29yJa$i7u" role="1u6Lvn">
+      <property role="TrG5h" value="Book1.png" />
+      <property role="2mJlLi" value="images/cover_a.png" />
+      <property role="Lsnro" value="32" />
+      <property role="LsnsT" value="32" />
+    </node>
+    <node concept="1u6Luv" id="6u29yJa$i7v" role="1u6Lvn">
+      <property role="TrG5h" value="Book2.png" />
+      <property role="2mJlLi" value="images/cover_b.png" />
+      <property role="Lsnro" value="32" />
+      <property role="LsnsT" value="32" />
+    </node>
   </node>
 </model>
 
