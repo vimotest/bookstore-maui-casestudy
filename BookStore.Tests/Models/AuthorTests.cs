@@ -1,3 +1,4 @@
+using Xunit;
 using BookStore.Core.Models;
 
 namespace BookStore.Tests.Models;

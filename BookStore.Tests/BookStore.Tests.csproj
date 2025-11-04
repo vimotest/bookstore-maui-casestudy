@@ -5,6 +5,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
+    <!-- Suppress nullable warnings for generated code -->
+    <NoWarn>$(NoWarn);CS8618;CS8603;CS0649</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,15 +15,32 @@
     <PackageReference Include="Moq" Version="4.20.72" />
     <PackageReference Include="xunit" Version="2.9.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+    <PackageReference Include="MSTest.TestFramework" Version="3.6.3" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.6.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Using Include="Xunit" />
-  </ItemGroup>
+  <!-- Note: Not using global 'Using Include="Xunit"' to avoid namespace conflicts with MSTest -->
+  <!-- xUnit test files must explicitly add 'using Xunit;' at the top -->
 
   <ItemGroup>
     <ProjectReference Include="..\BookStore.Core\BookStore.Core.csproj" />
     <ProjectReference Include="..\BookStore.Infrastructure\BookStore.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <!-- Generated ViewModel base classes and Tests from ViMoTest -->
+  <!-- Note: These files are directly compiled from the ViMoTest generation folder -->
+  <!-- When ViMoTest regenerates these files, the changes are automatically picked up -->
+  <ItemGroup>
+    <!-- ViewModels - Base classes to be extended in actual implementation -->
+    <Compile Include="..\ViMoTest\solutions\BookStoreViMoTests\source_gen\BookStoreViMoTests\tests\BookListViewModel.cs" />
+    <Compile Include="..\ViMoTest\solutions\BookStoreViMoTests\source_gen\BookStoreViMoTests\tests\BookListViewModelBookListRow.cs" />
+    <Compile Include="..\ViMoTest\solutions\BookStoreViMoTests\source_gen\BookStoreViMoTests\tests\BookDetailsViewModel.cs" />
+    <Compile Include="..\ViMoTest\solutions\BookStoreViMoTests\source_gen\BookStoreViMoTests\tests\BookTreeViewModel.cs" />
+    
+    <!-- Test Setup and Tests (MSTest-based) -->
+    <Compile Include="..\ViMoTest\solutions\BookStoreViMoTests\source_gen\BookStoreViMoTests\tests\BookListViewModelTestSetup.cs" />
+    <Compile Include="..\ViMoTest\solutions\BookStoreViMoTests\source_gen\BookStoreViMoTests\tests\BookListViewModelTestSetupImpl.cs" />
+    <Compile Include="..\ViMoTest\solutions\BookStoreViMoTests\source_gen\BookStoreViMoTests\tests\BookListViewModelTests.cs" />
   </ItemGroup>
 
 </Project>
