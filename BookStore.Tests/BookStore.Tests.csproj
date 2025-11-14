@@ -5,8 +5,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
     <!-- Suppress nullable warnings for generated code -->
     <NoWarn>$(NoWarn);CS8618;CS8603;CS0649</NoWarn>
+    <!-- Explicitly use .NET SDK MSBuild, not Mono -->
+    <UseSharedCompilation>true</UseSharedCompilation>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,21 +29,9 @@
     <ProjectReference Include="..\BookStore.Core\BookStore.Core.csproj" />
     <ProjectReference Include="..\BookStore.Infrastructure\BookStore.Infrastructure.csproj" />
   </ItemGroup>
-
-  <!-- Generated ViewModel base classes and Tests from ViMoTest -->
-  <!-- Note: These files are directly compiled from the ViMoTest generation folder -->
-  <!-- When ViMoTest regenerates these files, the changes are automatically picked up -->
-  <ItemGroup>
-    <!-- ViewModels - Base classes to be extended in actual implementation -->
-    <Compile Include="..\ViMoTest\solutions\BookStoreViMoTests\source_gen\BookStoreViMoTests\tests\BookListViewModel.cs" />
-    <Compile Include="..\ViMoTest\solutions\BookStoreViMoTests\source_gen\BookStoreViMoTests\tests\BookListViewModelBookListRow.cs" />
-    <Compile Include="..\ViMoTest\solutions\BookStoreViMoTests\source_gen\BookStoreViMoTests\tests\BookDetailsViewModel.cs" />
-    <Compile Include="..\ViMoTest\solutions\BookStoreViMoTests\source_gen\BookStoreViMoTests\tests\BookTreeViewModel.cs" />
-    
-    <!-- Test Setup and Tests (MSTest-based) -->
-    <Compile Include="..\ViMoTest\solutions\BookStoreViMoTests\source_gen\BookStoreViMoTests\tests\BookListViewModelTestSetup.cs" />
-    <Compile Include="..\ViMoTest\solutions\BookStoreViMoTests\source_gen\BookStoreViMoTests\tests\BookListViewModelTestSetupImpl.cs" />
-    <Compile Include="..\ViMoTest\solutions\BookStoreViMoTests\source_gen\BookStoreViMoTests\tests\BookListViewModelTests.cs" />
-  </ItemGroup>
+  
+  <!-- ViewModels - Base classes to be extended in actual implementation -->
+  <Import Project="..\ViMoTest\solutions\BookStoreViMoTests\source_gen\BookStoreViMoTests\tests\BookStoreViMoTests.tests.tests.props" />
+  <Import Project="..\ViMoTest\solutions\BookStoreViMoTests\source_gen\BookStoreViMoTests\tests\BookStoreViMoTests.tests.sources.props" />
 
 </Project>
