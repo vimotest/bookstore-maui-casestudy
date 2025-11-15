@@ -5,6 +5,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
+
+    <!-- Define compiler constant when building in fallback mode -->
+    <DefineConstants Condition="'$(DotNetBuildFromSource)' == 'true'">$(DefineConstants);DotNetBuildFromSource</DefineConstants>
     <IsTestProject>true</IsTestProject>
     <!-- Suppress nullable warnings for generated code -->
     <NoWarn>$(NoWarn);CS8618;CS8603;CS0649</NoWarn>
@@ -14,6 +17,7 @@
 
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
     <PackageReference Include="Moq" Version="4.20.72" />
     <PackageReference Include="xunit" Version="2.9.2" />
@@ -26,6 +30,7 @@
   <!-- xUnit test files must explicitly add 'using Xunit;' at the top -->
 
   <ItemGroup>
+    <ProjectReference Include="..\BookStore.App\BookStore.App.csproj" />
     <ProjectReference Include="..\BookStore.Core\BookStore.Core.csproj" />
     <ProjectReference Include="..\BookStore.Infrastructure\BookStore.Infrastructure.csproj" />
   </ItemGroup>

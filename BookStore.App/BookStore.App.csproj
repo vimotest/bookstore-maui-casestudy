@@ -21,6 +21,9 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 
+		<!-- Define compiler constant when building in fallback mode -->
+		<DefineConstants Condition="'$(DotNetBuildFromSource)' == 'true'">$(DefineConstants);DotNetBuildFromSource</DefineConstants>
+
 		<!-- Display name -->
 		<ApplicationTitle>BookStore.App</ApplicationTitle>
 
