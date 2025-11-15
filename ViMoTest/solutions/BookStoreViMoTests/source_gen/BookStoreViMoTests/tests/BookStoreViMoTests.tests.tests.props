@@ -1,0 +1,7 @@
+<Project>  
+  <ItemGroup>    
+    <Compile Include="$(MSBuildThisFileDirectory)BookListViewModelTestSetup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BookListViewModelTestSetupImpl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BookListViewModelTests.cs" />
+  </ItemGroup>
+</Project>

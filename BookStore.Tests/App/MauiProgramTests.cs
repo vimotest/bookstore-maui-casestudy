@@ -1,67 +1,45 @@
-#if !DotNetBuildFromSource
+using BookStore.Bootstrap;
 using BookStore.Core.Repositories;
 using BookStore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
-#endif
+using Xunit;
 
 namespace BookStore.Tests.App;
 
 /// <summary>
-/// Tests for MauiProgram dependency injection configuration.
+/// Tests the platform-agnostic service registration used by the MAUI bootstrapper.
 /// </summary>
 public class MauiProgramTests
 {
-#if !DotNetBuildFromSource
     [Fact]
-    public void CreateMauiApp_ShouldRegisterBookRepositoryAsSingleton()
+    public void AddBookStoreServices_ShouldRegisterBookRepository()
     {
-        // Arrange & Act
-        var app = BookStore.App.MauiProgram.CreateMauiApp();
+        // Arrange
+        var services = new ServiceCollection();
+
+        // Act
+        services.AddBookStoreServices();
+        using var provider = services.BuildServiceProvider();
 
         // Assert
-        var services = app.Services;
-        Assert.NotNull(services);
-
-        // Verify IBookRepository is registered
-        var repository = services.GetService<IBookRepository>();
+        var repository = provider.GetService<IBookRepository>();
         Assert.NotNull(repository);
         Assert.IsType<BookRepositoryMock>(repository);
     }
 
     [Fact]
-    public void CreateMauiApp_BookRepository_ShouldBeSingleton()
+    public void AddBookStoreServices_ShouldKeepRepositorySingleton()
     {
-        // Arrange & Act
-        var app = BookStore.App.MauiProgram.CreateMauiApp();
-        var services = app.Services;
+        // Arrange
+        var services = new ServiceCollection();
+        services.AddBookStoreServices();
+        using var provider = services.BuildServiceProvider();
 
-        // Get repository twice
-        var repository1 = services.GetService<IBookRepository>();
-        var repository2 = services.GetService<IBookRepository>();
-
-        // Assert - Same instance should be returned (singleton behavior)
-        Assert.NotNull(repository1);
-        Assert.NotNull(repository2);
-        Assert.Same(repository1, repository2);
-    }
-
-    [Fact]
-    public void CreateMauiApp_ShouldReturnValidMauiApp()
-    {
-        // Arrange & Act
-        var app = BookStore.App.MauiProgram.CreateMauiApp();
+        // Act
+        var instance1 = provider.GetRequiredService<IBookRepository>();
+        var instance2 = provider.GetRequiredService<IBookRepository>();
 
         // Assert
-        Assert.NotNull(app);
-        Assert.NotNull(app.Services);
+        Assert.Same(instance1, instance2);
     }
-#else
-    [Fact]
-    public void MauiProgram_NotAvailable_InFallbackMode()
-    {
-        // This test exists to ensure tests pass in fallback mode
-        // MauiProgram is only available when MAUI workload is installed
-        Assert.True(true, "MauiProgram tests skipped in fallback mode");
-    }
-#endif
 }

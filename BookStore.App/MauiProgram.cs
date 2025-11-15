@@ -1,6 +1,5 @@
 #if !DotNetBuildFromSource
-using BookStore.Core.Repositories;
-using BookStore.Infrastructure;
+using BookStore.Bootstrap;
 using Microsoft.Extensions.Logging;
 
 namespace BookStore.App;
@@ -25,8 +24,8 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
 
-        // Register services
-        builder.Services.AddSingleton<IBookRepository, BookRepositoryMock>();
+        // Register services shared across platforms
+        builder.Services.AddBookStoreServices();
 
 #if DEBUG
         builder.Logging.AddDebug();

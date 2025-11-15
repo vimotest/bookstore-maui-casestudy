@@ -1,5 +1,6 @@
 using BookStore.Core.Models;
 using BookStore.Infrastructure;
+using Xunit;
 
 namespace BookStore.Tests.Infrastructure;
 
