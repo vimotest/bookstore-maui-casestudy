@@ -1,4 +1,6 @@
-﻿namespace BookStore.Tests;
+﻿using Xunit;
+
+namespace BookStore.Tests;
 
 public class UnitTest1
 {

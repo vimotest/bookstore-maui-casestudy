@@ -8,25 +8,36 @@
 
     <!-- Define compiler constant when building in fallback mode -->
     <DefineConstants Condition="'$(DotNetBuildFromSource)' == 'true'">$(DefineConstants);DotNetBuildFromSource</DefineConstants>
+    <IsTestProject>true</IsTestProject>
+    <!-- Suppress nullable warnings for generated code -->
+    <NoWarn>$(NoWarn);CS8618;CS8603;CS0649</NoWarn>
+    <!-- Explicitly use .NET SDK MSBuild, not Mono -->
+    <UseSharedCompilation>true</UseSharedCompilation>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
     <PackageReference Include="Moq" Version="4.20.72" />
     <PackageReference Include="xunit" Version="2.9.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+    <PackageReference Include="MSTest.TestFramework" Version="3.6.3" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.6.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Using Include="Xunit" />
-  </ItemGroup>
+  <!-- Note: Not using global 'Using Include="Xunit"' to avoid namespace conflicts with MSTest -->
+  <!-- xUnit test files must explicitly add 'using Xunit;' at the top -->
 
   <ItemGroup>
-    <ProjectReference Include="..\BookStore.App\BookStore.App.csproj" />
+    <ProjectReference Include="..\BookStore.Bootstrap\BookStore.Bootstrap.csproj" />
     <ProjectReference Include="..\BookStore.Core\BookStore.Core.csproj" />
     <ProjectReference Include="..\BookStore.Infrastructure\BookStore.Infrastructure.csproj" />
   </ItemGroup>
+  
+  <!-- ViewModels - Base classes to be extended in actual implementation -->
+  <Import Project="..\ViMoTest\solutions\BookStoreViMoTests\source_gen\BookStoreViMoTests\tests\BookStoreViMoTests.tests.tests.props" />
+  <Import Project="..\ViMoTest\solutions\BookStoreViMoTests\source_gen\BookStoreViMoTests\tests\BookStoreViMoTests.tests.sources.props" />
 
 </Project>
