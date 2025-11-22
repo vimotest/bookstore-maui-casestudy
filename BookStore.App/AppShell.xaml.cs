@@ -13,8 +13,9 @@ public partial class AppShell : Shell
     {
         InitializeComponent();
 
-        // Register route for BookDetailPage (to be created later)
-        Routing.RegisterRoute("bookdetail", typeof(Views.BookListView)); // Placeholder until BookDetailPage is created
+        // Register route for BookDetailPage
+        // TODO: Replace with actual BookDetailPage type when it is created
+        // Routing.RegisterRoute("bookdetail", typeof(Views.BookDetailPage));
     }
 }
 #endif
