@@ -1,0 +1,9 @@
+<Project>
+  <PropertyGroup>
+    <ErrorOnXcodeVersionMismatch>false</ErrorOnXcodeVersionMismatch>
+    <_SuppressXcodeVersionCheck>true</_SuppressXcodeVersionCheck>
+    <!-- Optional: Force a specific Xcode version if the detection is failing badly -->
+    <_SdkXcodeVersion>16.4</_SdkXcodeVersion>
+    <NoWarn>$(NoWarn);MT0079</NoWarn>
+  </PropertyGroup>
+</Project>
