@@ -1,5 +1,7 @@
 <Project>
   <PropertyGroup>
+    <ValidateXcodeVersion>false</ValidateXcodeVersion>
+    <MtouchLink>SdkOnly</MtouchLink>
     <ErrorOnXcodeVersionMismatch>false</ErrorOnXcodeVersionMismatch>
     <_SuppressXcodeVersionCheck>true</_SuppressXcodeVersionCheck>
     <!-- Optional: Force a specific Xcode version if the detection is failing badly -->

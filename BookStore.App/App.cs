@@ -11,7 +11,11 @@ public class App : Application
     /// </summary>
     public App()
     {
-        MainPage = new AppShell();
+    }
+
+    protected override Window CreateWindow(IActivationState? activationState)
+    {
+        return new Window(new AppShell());
     }
 }
 #endif
