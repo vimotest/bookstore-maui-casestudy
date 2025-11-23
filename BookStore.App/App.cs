@@ -11,16 +11,11 @@ public class App : Application
     /// </summary>
     public App()
     {
-        // Placeholder: Main page will be set when Shell is implemented
-        MainPage = new ContentPage
-        {
-            Content = new Label
-            {
-                Text = "BookStore App - Ready for UI implementation",
-                HorizontalOptions = LayoutOptions.Center,
-                VerticalOptions = LayoutOptions.Center
-            }
-        };
+    }
+
+    protected override Window CreateWindow(IActivationState? activationState)
+    {
+        return new Window(new AppShell());
     }
 }
 #endif

@@ -27,6 +27,10 @@ public static class MauiProgram
         // Register services shared across platforms
         builder.Services.AddBookStoreServices();
 
+        // Register Shell and Views
+        builder.Services.AddSingleton<AppShell>();
+        builder.Services.AddTransient<Views.BookListView>();
+
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
