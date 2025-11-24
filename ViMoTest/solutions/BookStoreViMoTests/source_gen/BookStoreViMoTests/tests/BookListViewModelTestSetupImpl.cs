@@ -33,8 +33,12 @@ internal class BookListViewModelTestSetupImpl : BookListViewModelTestSetup
                 var isbn = parts[0];
                 var name = parts[1];
                 var author = parts[2];
-                var price = parts[3];
-                var stock = int.Parse(parts[4]);
+                // Note: price (parts[3]) is not stored as Book model doesn't have a Price property yet
+                
+                if (!int.TryParse(parts[4], out int stock))
+                {
+                    stock = 0; // Default to 0 if parsing fails
+                }
                 
                 // Create a test book - using a deterministic GUID based on ISBN
                 var book = new Book(
