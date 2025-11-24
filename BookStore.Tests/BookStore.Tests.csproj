@@ -34,10 +34,11 @@
     <ProjectReference Include="..\BookStore.Bootstrap\BookStore.Bootstrap.csproj" />
     <ProjectReference Include="..\BookStore.Core\BookStore.Core.csproj" />
     <ProjectReference Include="..\BookStore.Infrastructure\BookStore.Infrastructure.csproj" />
+    <ProjectReference Include="..\BookStore.ViewModels\BookStore.ViewModels.csproj" />
   </ItemGroup>
   
   <!-- ViewModels - Base classes to be extended in actual implementation -->
   <Import Project="..\ViMoTest\solutions\BookStoreViMoTests\source_gen\BookStoreViMoTests\tests\BookStoreViMoTests.tests.tests.props" />
-  <Import Project="..\ViMoTest\solutions\BookStoreViMoTests\source_gen\BookStoreViMoTests\tests\BookStoreViMoTests.tests.sources.props" />
+
 
 </Project>
