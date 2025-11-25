@@ -61,11 +61,13 @@ namespace BookStore.ViewModels
             }
         }
 
+        [RelayCommand]
         public override void addClicked()
         {
             // TODO: Implement add functionality
         }
 
+        [RelayCommand]
         public override void deleteClicked()
         {
             // TODO: Implement delete functionality

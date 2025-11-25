@@ -1,5 +1,6 @@
 using BookStore.Core.Repositories;
 using BookStore.Infrastructure;
+using BookStore.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BookStore.Bootstrap;
@@ -14,7 +15,12 @@ public static class ServiceCollectionExtensions
     /// </summary>
     public static IServiceCollection AddBookStoreServices(this IServiceCollection services)
     {
+        // Repositories
         services.AddSingleton<IBookRepository, BookRepositoryMock>();
+
+        // ViewModels
+        services.AddTransient<BookListViewModelImpl>();
+
         return services;
     }
 }

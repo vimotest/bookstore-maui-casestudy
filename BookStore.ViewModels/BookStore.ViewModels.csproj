@@ -18,6 +18,12 @@
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
       <_Parameter1>BookStore.Tests</_Parameter1>
     </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>BookStore.App</_Parameter1>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>BookStore.Bootstrap</_Parameter1>
+    </AssemblyAttribute>
   </ItemGroup>
 
   <Import Project="..\ViMoTest\solutions\BookStoreViMoTests\source_gen\BookStoreViMoTests\tests\BookStoreViMoTests.tests.sources.props" />

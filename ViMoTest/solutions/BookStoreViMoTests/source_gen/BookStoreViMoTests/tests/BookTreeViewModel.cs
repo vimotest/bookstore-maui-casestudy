@@ -3,7 +3,7 @@
 /// </filename>
 
 
-internal class BookTreeViewModel
+public class BookTreeViewModel
 {
     public   virtual void loadView()
   {

@@ -1,12 +1,82 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:BookStore.ViewModels;assembly=BookStore.ViewModels"
              x:Class="BookStore.App.Views.BookListView"
+             x:DataType="viewmodels:BookListViewModelImpl"
              Title="Books">
-    <VerticalStackLayout>
-        <Label 
-            Text="Book List View - Coming Soon"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="10">
+        <!-- Header with title -->
+        <Label Grid.Row="0"
+               Text="Book List"
+               FontSize="24"
+               FontAttributes="Bold"
+               Margin="0,0,0,10" />
+
+        <!-- Book list using CollectionView -->
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Books}"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="viewmodels:BookListViewModelBookListRowImpl">
+                    <Frame Margin="0,5" Padding="10" BorderColor="LightGray" CornerRadius="5">
+                        <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto,Auto">
+                            <!-- Selection checkbox -->
+                            <CheckBox Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"
+                                      IsChecked="{Binding IsSelected}"
+                                      VerticalOptions="Center" />
+
+                            <!-- Title -->
+                            <Label Grid.Row="0" Grid.Column="1"
+                                   Text="{Binding TitleLabelText}"
+                                   FontSize="18"
+                                   FontAttributes="Bold" />
+
+                            <!-- Author -->
+                            <Label Grid.Row="1" Grid.Column="1"
+                                   Text="{Binding AuthorLabelText}"
+                                   FontSize="14"
+                                   TextColor="Gray" />
+
+                            <!-- ISBN -->
+                            <Label Grid.Row="2" Grid.Column="1"
+                                   Text="{Binding IsbnLabelText}"
+                                   FontSize="12"
+                                   TextColor="DarkGray" />
+
+                            <!-- Price and Stock on the right -->
+                            <VerticalStackLayout Grid.Row="0" Grid.Column="2" Grid.RowSpan="3"
+                                                 VerticalOptions="Center"
+                                                 HorizontalOptions="End">
+                                <Label Text="{Binding PriceLabelText}"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="End" />
+                                <Label Text="{Binding StockLabelText}"
+                                       FontSize="12"
+                                       TextColor="Gray"
+                                       HorizontalOptions="End" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+            <CollectionView.EmptyView>
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <Label Text="No books available"
+                           FontSize="18"
+                           TextColor="Gray"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+        </CollectionView>
+
+        <!-- Action buttons -->
+        <HorizontalStackLayout Grid.Row="2" Spacing="10" Margin="0,10,0,0">
+            <Button Text="Add Book" Command="{Binding AddClickedCommand}" />
+            <Button Text="Delete Selected" Command="{Binding DeleteClickedCommand}" />
+        </HorizontalStackLayout>
+    </Grid>
 </ContentPage>

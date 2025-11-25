@@ -3,7 +3,7 @@
 /// </filename>
 using System.Collections.Generic;
 
-internal class BookListViewModel
+public class BookListViewModel
 {
     private System.Collections.Generic.List<BookListViewModelBookListRow> BookListTableRows = new System.Collections.Generic.List<BookListViewModelBookListRow>();
  

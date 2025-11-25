@@ -3,7 +3,7 @@
 /// </filename>
 
 
-internal class BookListViewModelBookListRow
+public class BookListViewModelBookListRow
 {
     private bool isSelectedCheckBoxChecked;
  
