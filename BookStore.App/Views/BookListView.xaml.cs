@@ -13,10 +13,9 @@ public partial class BookListView : ContentPage
 
     /// <summary>
     /// Initializes a new instance of the BookListView class.
-    /// Constructor is internal because the ViewModel type is internal.
     /// </summary>
     /// <param name="viewModel">The view model injected via DI.</param>
-    internal BookListView(BookListViewModelImpl viewModel)
+    public BookListView(BookListViewModelImpl viewModel)
     {
         InitializeComponent();
         _viewModel = viewModel;

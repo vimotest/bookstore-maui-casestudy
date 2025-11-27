@@ -6,7 +6,7 @@
     xmlns:views="clr-namespace:BookStore.App.Views">
 
     <FlyoutItem Title="Books" Icon="dotnet_bot.png">
-        <ShellContent ContentTemplate="{DataTemplate views:BookListView}" />
+        <ShellContent x:Name="BookListShellContent" />
     </FlyoutItem>
 
 </Shell>

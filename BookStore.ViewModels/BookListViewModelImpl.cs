@@ -10,7 +10,7 @@ namespace BookStore.ViewModels
     /// Does NOT expose Book domain objects directly - only presentation-ready BookListViewModelBookListRow objects.
     /// </summary>
     [ObservableObject]
-    internal partial class BookListViewModelImpl : BookListViewModel
+    public partial class BookListViewModelImpl : BookListViewModel
     {
         private readonly IBookRepository _bookRepository;
         private ObservableCollection<BookListViewModelBookListRow> _books = new();
@@ -21,9 +21,14 @@ namespace BookStore.ViewModels
             set => SetProperty(ref _books, value);
         }
 
+        public IRelayCommand AddClickedCommand { get; }
+        public IRelayCommand DeleteClickedCommand { get; }
+
         public BookListViewModelImpl(IBookRepository bookRepository)
         {
             _bookRepository = bookRepository ?? throw new ArgumentNullException(nameof(bookRepository));
+            AddClickedCommand = new RelayCommand(addClicked);
+            DeleteClickedCommand = new RelayCommand(deleteClicked);
         }
 
         public override List<BookListViewModelBookListRow> getBookListTableRows()
@@ -61,13 +66,11 @@ namespace BookStore.ViewModels
             }
         }
 
-        [RelayCommand]
         public override void addClicked()
         {
             // TODO: Implement add functionality
         }
 
-        [RelayCommand]
         public override void deleteClicked()
         {
             // TODO: Implement delete functionality

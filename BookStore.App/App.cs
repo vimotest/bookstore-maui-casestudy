@@ -6,16 +6,21 @@ namespace BookStore.App;
 /// </summary>
 public class App : Application
 {
+    private readonly IServiceProvider _serviceProvider;
+
     /// <summary>
     /// Initializes a new instance of the App class.
     /// </summary>
-    public App()
+    /// <param name="serviceProvider">The service provider for dependency injection.</param>
+    public App(IServiceProvider serviceProvider)
     {
+        _serviceProvider = serviceProvider;
     }
 
     protected override Window CreateWindow(IActivationState? activationState)
     {
-        return new Window(new AppShell());
+        var shell = _serviceProvider.GetRequiredService<AppShell>();
+        return new Window(shell);
     }
 }
 #endif

@@ -7,7 +7,7 @@ namespace BookStore.ViewModels
     /// Exposes only primitive types (string, bool) for data binding.
     /// </summary>
     [ObservableObject]
-    internal partial class BookListViewModelBookListRowImpl : BookListViewModelBookListRow
+    public partial class BookListViewModelBookListRowImpl : BookListViewModelBookListRow
     {
         private bool _isSelected;
         private string _previewImageName = string.Empty;
